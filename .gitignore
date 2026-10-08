@@ -1,0 +1,50 @@
+# Environment & secrets
+.env
+*.env
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads & generated reports (keep structure, not content)
+uploads/*
+!uploads/.gitkeep
+
+# Alembic
+alembic/versions/*.py
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+
+# SQLite temporary files
+*.db-shm
+*.db-wal
+*.db-journal

@@ -1,0 +1,44 @@
+FROM python:3.11-slim AS builder
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc libpq-dev curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install backend-only dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user \
+    fastapi uvicorn[standard] python-multipart httpx slowapi \
+    python-jose[cryptography] passlib[bcrypt] python-dotenv \
+    sqlalchemy alembic psycopg2-binary \
+    openai google-generativeai tiktoken \
+    pandas numpy scikit-learn scipy statsmodels openpyxl xlrd \
+    pdfplumber pymupdf reportlab \
+    redis pydantic pydantic-settings email-validator aiofiles
+
+# ── Runtime image ──────────────────────────────────────────────────────────────
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 libgl1-mesa-glx libglib2.0-0 curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy installed packages from builder
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
+
+# Non-root user for security
+RUN useradd -m -u 1001 appuser
+USER appuser
+
+COPY --chown=appuser:appuser . .
+
+RUN mkdir -p uploads/reports
+
+EXPOSE 8000
+
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000", \
+     "--workers", "2", "--access-log"]

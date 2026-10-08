@@ -1,0 +1,17 @@
+[theme]
+base = "dark"
+primaryColor = "#3b82f6"
+backgroundColor = "#060b17"
+secondaryBackgroundColor = "#0d1526"
+textColor = "#f1f5f9"
+font = "sans serif"
+
+[server]
+maxUploadSize = 50
+enableWebsocketCompression = true
+
+[browser]
+gatherUsageStats = false
+
+[runner]
+fastReruns = true

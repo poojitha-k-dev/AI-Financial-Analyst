@@ -1,0 +1,16 @@
+.env
+*.db
+*.sqlite
+uploads/
+.git/
+.gitignore
+__pycache__/
+*.pyc
+.venv/
+venv/
+.idea/
+.vscode/
+*.log
+alembic/versions/
+README.md
+start_local.bat

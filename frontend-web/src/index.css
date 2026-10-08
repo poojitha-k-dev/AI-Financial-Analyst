@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Light theme core ── */
+  --bg:           #f8faff;
+  --bg2:          #ffffff;
+  --bg3:          #f1f5fd;
+  --bg4:          #e8eef8;
+  --bg5:          #dde6f5;
+
+  /* Borders */
+  --border:       #e2e8f0;
+  --border2:      #cbd5e1;
+  --border3:      #94a3b8;
+
+  /* Brand — vivid indigo + cyan */
+  --primary:        #6366f1;
+  --primary-light:  #818cf8;
+  --primary-dim:    rgba(99,102,241,0.10);
+  --primary-border: rgba(99,102,241,0.25);
+  --secondary:      #06b6d4;
+  --secondary-dim:  rgba(6,182,212,0.10);
+  --accent:         #8b5cf6;
+
+  /* Semantic */
+  --green:        #059669;
+  --green-light:  #10b981;
+  --green-dim:    rgba(5,150,105,0.10);
+  --red:          #dc2626;
+  --red-light:    #ef4444;
+  --red-dim:      rgba(220,38,38,0.10);
+  --yellow:       #d97706;
+  --yellow-light: #f59e0b;
+  --yellow-dim:   rgba(217,119,6,0.10);
+  --blue:         #2563eb;
+  --blue-light:   #3b82f6;
+  --blue-dim:     rgba(37,99,235,0.10);
+  --orange:       #ea580c;
+
+  /* Text */
+  --text:         #0f172a;
+  --text2:        #334155;
+  --text3:        #64748b;
+  --text4:        #94a3b8;
+
+  /* Gradients */
+  --grad:         linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  --grad2:        linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #06b6d4 100%);
+  --grad-green:   linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --grad-red:     linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  --grad-warm:    linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+
+  /* Shadows */
+  --shadow-xs:  0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-sm:  0 2px 8px rgba(15,23,42,0.08), 0 1px 3px rgba(15,23,42,0.05);
+  --shadow:     0 4px 16px rgba(15,23,42,0.10), 0 2px 6px rgba(15,23,42,0.06);
+  --shadow-md:  0 8px 28px rgba(15,23,42,0.12), 0 3px 10px rgba(15,23,42,0.07);
+  --shadow-lg:  0 16px 48px rgba(15,23,42,0.14), 0 6px 16px rgba(15,23,42,0.08);
+  --shadow-primary: 0 4px 20px rgba(99,102,241,0.30);
+
+  /* Geometry */
+  --radius-xs:  5px;
+  --radius-sm:  8px;
+  --radius:     12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+  --radius-2xl: 28px;
+
+  --transition:       0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring:0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Compatibility aliases */
+  --accent2:   var(--primary);
+  --accent3:   var(--secondary);
+  --glass:     rgba(255,255,255,0.75);
+  --glass2:    rgba(248,250,255,0.9);
+  --glass-border: var(--border);
+  --glass-border2: var(--border2);
+  --bg-gradient: var(--grad);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a { color: var(--primary); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--primary-light); }
+button { cursor: pointer; font-family: inherit; }
+input, textarea, select { font-family: inherit; font-size: 14px; outline: none; }
+
+/* ── Scrollbar ─────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg3); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+
+/* ── Select options dark fix ───────────────────────────────────────── */
+select { color-scheme: light; }
+select option { background: #fff; color: #0f172a; }
+
+/* ── Page select ───────────────────────────────────────────────────── */
+.page-select {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  transition: all var(--transition);
+  appearance: none;
+  box-shadow: var(--shadow-xs);
+  min-width: 160px;
+}
+.page-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-dim);
+  outline: none;
+}
+.page-select option { background: #fff; color: #0f172a; }
+
+/* ── Keyframes ─────────────────────────────────────────────────────── */
+@keyframes fadeUp    { from { opacity:0; transform:translateY(14px) } to { opacity:1; transform:none } }
+@keyframes fadeIn    { from { opacity:0 } to { opacity:1 } }
+@keyframes spin      { to { transform:rotate(360deg) } }
+@keyframes pulse     { 0%,100% { opacity:1 } 50% { opacity:0.45 } }
+@keyframes shimmer   { 0% { background-position:-600px 0 } 100% { background-position:600px 0 } }
+@keyframes bounce    { 0%,80%,100% { transform:scale(0.6);opacity:0.4 } 40% { transform:scale(1);opacity:1 } }
+@keyframes countUp   { from { opacity:0; transform:scale(0.8) translateY(6px) } to { opacity:1; transform:none } }
+@keyframes glowPulse { 0%,100% { box-shadow:0 0 16px rgba(99,102,241,0.35) } 50% { box-shadow:0 0 32px rgba(99,102,241,0.65) } }
+@keyframes slideDown { from { opacity:0; transform:translateY(-8px) } to { opacity:1; transform:none } }
+
+.fade-up  { animation: fadeUp  0.4s ease both; }
+.fade-in  { animation: fadeIn  0.3s ease both; }
+.slide-in { animation: slideDown 0.3s ease both; }
+
+/* ── Skeleton ──────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg3) 25%, var(--bg4) 50%, var(--bg3) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Gradient text ─────────────────────────────────────────────────── */
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Mono ──────────────────────────────────────────────────────────── */
+.mono { font-family: 'JetBrains Mono', monospace; }
